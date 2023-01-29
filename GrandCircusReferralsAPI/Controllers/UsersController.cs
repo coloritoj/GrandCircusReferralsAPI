@@ -19,6 +19,11 @@ namespace GrandCircusReferralsAPI.Controllers
             using (IDbConnection database = new System.Data.SqlClient.SqlConnection(DatabaseConnectionHelper.GetDatabaseConnection()))
             {
                 users = database.Query<BaseUser>("dbo.sp_GetAllCandidateBaseInfo").ToList();
+
+                foreach (var user in users)
+                {
+                    user.Notes = database.Query<BaseNote>($"dbo.sp_GetNotesByCandidateID {user.ID}").ToList();
+                }
             }
 
             return users;

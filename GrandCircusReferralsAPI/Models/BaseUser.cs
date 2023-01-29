@@ -22,6 +22,8 @@
 
         public int InterestFlag { get; set; }
 
+        public List<BaseNote> Notes { get; set; }
+
         public string ApplicationStatus { get; set; }
     }
 }
