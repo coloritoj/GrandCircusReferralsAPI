@@ -54,6 +54,16 @@ namespace GrandCircusReferralsAPI.Controllers
         }
 
         [HttpPost]
+        [Route("/api/AddNoteByCandidateID")]
+        public async Task Post(AddNoteModel addNoteModel)
+        {
+            using (IDbConnection database = new System.Data.SqlClient.SqlConnection(DatabaseConnectionHelper.GetDatabaseConnection()))
+            {
+                database.Execute($"dbo.sp_AddNoteByCandidateID", addNoteModel, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        [HttpPost]
         [Route("/api/AddNewUser")]
         public async Task Post(AddNewUserModel newUser)
         {
