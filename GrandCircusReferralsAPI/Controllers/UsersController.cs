@@ -65,11 +65,11 @@ namespace GrandCircusReferralsAPI.Controllers
 
         [HttpPost]
         [Route("/api/AddNewUser")]
-        public async Task Post(AddNewUserModel newUser)
+        public async Task Post(AddNewUserModel addNewUserModel)
         {
             using (IDbConnection database = new System.Data.SqlClient.SqlConnection(DatabaseConnectionHelper.GetDatabaseConnection()))
             {
-                database.Execute("dbo.sp_AddNewUser", newUser, commandType: CommandType.StoredProcedure);
+                database.Execute("dbo.sp_AddNewUser", addNewUserModel, commandType: CommandType.StoredProcedure);
             }
         }
     }
