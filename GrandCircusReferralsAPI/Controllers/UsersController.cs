@@ -72,5 +72,15 @@ namespace GrandCircusReferralsAPI.Controllers
                 database.Execute("dbo.sp_AddNewUser", addNewUserModel, commandType: CommandType.StoredProcedure);
             }
         }
+
+        [HttpPost]
+        [Route("/api/UpdateApplicationStatusByUserID")]
+        public async Task Post(UpdateApplicationStatusModel updateApplicationStatusModel)
+        {
+            using (IDbConnection database = new System.Data.SqlClient.SqlConnection(DatabaseConnectionHelper.GetDatabaseConnection()))
+            {
+                database.Execute("dbo.sp_UpdateApplicationStatusByUserID", updateApplicationStatusModel, commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }
